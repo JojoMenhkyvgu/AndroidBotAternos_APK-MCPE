@@ -12,7 +12,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
     }
 
     compileOptions {
@@ -30,7 +29,6 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core:1.12.0'
-    implementation 'com.android.support:multidex:1.0.3'
 
     // CloudburstMC Bedrock protocol library
     implementation 'org.cloudburstmc.protocol:bedrock-connection:3.0.0.Beta6-SNAPSHOT'
