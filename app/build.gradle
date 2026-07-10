@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.arseniy.ghostbot'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.arseniy.ghostbot"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE*', 'META-INF/NOTICE*']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // CloudburstMC Bedrock protocol library
+    implementation 'org.cloudburstmc.protocol:bedrock-connection:3.0.0.Beta6-SNAPSHOT'
+    implementation 'org.cloudburstmc.protocol:bedrock-codec:3.0.0.Beta6-SNAPSHOT'
+
+    implementation 'io.netty:netty-all:4.1.107.Final'
+
+    // JWT для сборки login-цепочки (offline self-signed, как делает клиент Bedrock)
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
+
+    // BouncyCastle - нужен для кривой secp384r1 (ES384), т.к. штатный Android-провайдер её не всегда поддерживает
+    implementation 'org.bouncycastle:bcprov-jdk15to18:1.77'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    // HTTP-клиент для Microsoft/Xbox Live device code auth
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+}
